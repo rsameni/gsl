@@ -55,6 +55,11 @@ main (int argc, char **argv)
               test_1d (N, stride, gsl_wavelet_daubechies_centered, i);
             }
 
+		  for (i = 1; i <= 5; i ++)
+		    {
+			  test_1d (N, stride, gsl_wavelet_coiflet, i);
+			  test_1d (N, stride, gsl_wavelet_coiflet_centered, i);
+			}
           test_1d (N, stride, gsl_wavelet_haar, 2);
           test_1d (N, stride, gsl_wavelet_haar_centered, 2);
         }
@@ -84,6 +89,14 @@ main (int argc, char **argv)
               test_2d (N, tda, gsl_wavelet_daubechies_centered, i, NS);
             }
           
+		  for (i = 1; i <= 5; i ++)
+			{
+			  test_2d (N, tda, gsl_wavelet_coiflet, i, S);
+			  test_2d (N, tda, gsl_wavelet_coiflet_centered, i, S);
+			  test_2d (N, tda, gsl_wavelet_coiflet, i, NS);
+			  test_2d (N, tda, gsl_wavelet_coiflet_centered, i, NS);
+			}
+		  
           test_2d (N, tda, gsl_wavelet_haar, 2, S);
           test_2d (N, tda, gsl_wavelet_haar_centered, 2, S);
 

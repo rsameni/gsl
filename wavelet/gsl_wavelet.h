@@ -72,6 +72,8 @@ GSL_VAR const gsl_wavelet_type *gsl_wavelet_daubechies;
 GSL_VAR const gsl_wavelet_type *gsl_wavelet_daubechies_centered;
 GSL_VAR const gsl_wavelet_type *gsl_wavelet_haar;
 GSL_VAR const gsl_wavelet_type *gsl_wavelet_haar_centered;
+GSL_VAR const gsl_wavelet_type *gsl_wavelet_coiflet;
+GSL_VAR const gsl_wavelet_type *gsl_wavelet_coiflet_centered;
 GSL_VAR const gsl_wavelet_type *gsl_wavelet_bspline;
 GSL_VAR const gsl_wavelet_type *gsl_wavelet_bspline_centered;
 

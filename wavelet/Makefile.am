@@ -4,7 +4,7 @@ pkginclude_HEADERS = gsl_wavelet.h gsl_wavelet2d.h
 
 AM_CPPFLAGS = -I$(top_srcdir)
 
-libgslwavelet_la_SOURCES = dwt.c wavelet.c bspline.c daubechies.c haar.c
+libgslwavelet_la_SOURCES = dwt.c wavelet.c bspline.c daubechies.c haar.c coiflet.c
 
 check_PROGRAMS = test
 
