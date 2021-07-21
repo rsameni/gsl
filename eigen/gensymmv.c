@@ -169,7 +169,7 @@ gsl_eigen_gensymmv (gsl_matrix * A, gsl_matrix * B, gsl_vector * eval,
                      evec);
 
       /* the blas call destroyed the normalization - renormalize */
-      gensymmv_normalize_eigenvectors(evec);
+      ///gensymmv_normalize_eigenvectors(evec); // This function is redundant and should not be called. Reza Sameni 20191108
 
       return GSL_SUCCESS;
     }

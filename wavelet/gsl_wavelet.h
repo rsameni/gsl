@@ -1,17 +1,17 @@
 /* wavelet/gsl_wavelet.h
- * 
+ *
  * Copyright (C) 2004 Ivo Alxneit
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 3 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
@@ -35,10 +35,18 @@
 
 __BEGIN_DECLS
 
+#ifndef GSL_DISABLE_DEPRECATED
+typedef enum {
+  forward = 1, backward = -1,
+  gsl_wavelet_forward = 1, gsl_wavelet_backward = -1
+}
+gsl_wavelet_direction;
+#else
 typedef enum {
   gsl_wavelet_forward = 1, gsl_wavelet_backward = -1
-} 
+}
 gsl_wavelet_direction;
+#endif
 
 typedef struct
 {
@@ -74,6 +82,8 @@ GSL_VAR const gsl_wavelet_type *gsl_wavelet_haar;
 GSL_VAR const gsl_wavelet_type *gsl_wavelet_haar_centered;
 GSL_VAR const gsl_wavelet_type *gsl_wavelet_bspline;
 GSL_VAR const gsl_wavelet_type *gsl_wavelet_bspline_centered;
+GSL_VAR const gsl_wavelet_type *gsl_wavelet_coiflet;
+GSL_VAR const gsl_wavelet_type *gsl_wavelet_coiflet_centered;
 
 gsl_wavelet *gsl_wavelet_alloc (const gsl_wavelet_type * T, size_t k);
 void gsl_wavelet_free (gsl_wavelet * w);
@@ -82,17 +92,17 @@ const char *gsl_wavelet_name (const gsl_wavelet * w);
 gsl_wavelet_workspace *gsl_wavelet_workspace_alloc (size_t n);
 void gsl_wavelet_workspace_free (gsl_wavelet_workspace * work);
 
-int gsl_wavelet_transform (const gsl_wavelet * w, 
+int gsl_wavelet_transform (const gsl_wavelet * w,
                            double *data, size_t stride, size_t n,
-                           gsl_wavelet_direction dir, 
+                           gsl_wavelet_direction dir,
                            gsl_wavelet_workspace * work);
 
-int gsl_wavelet_transform_forward (const gsl_wavelet * w, 
-                                   double *data, size_t stride, size_t n, 
+int gsl_wavelet_transform_forward (const gsl_wavelet * w,
+                                   double *data, size_t stride, size_t n,
                                    gsl_wavelet_workspace * work);
 
-int gsl_wavelet_transform_inverse (const gsl_wavelet * w, 
-                                    double *data, size_t stride, size_t n, 
+int gsl_wavelet_transform_inverse (const gsl_wavelet * w,
+                                    double *data, size_t stride, size_t n,
                                     gsl_wavelet_workspace * work);
 
 __END_DECLS

@@ -55,6 +55,12 @@ main (int argc, char **argv)
               test_1d (N, stride, gsl_wavelet_daubechies_centered, i);
             }
 
+          for (i = 1; i <= 5; i ++)
+            {
+              test_1d (N, stride, gsl_wavelet_coiflet, i);
+              test_1d (N, stride, gsl_wavelet_coiflet_centered, i);
+            }
+
           test_1d (N, stride, gsl_wavelet_haar, 2);
           test_1d (N, stride, gsl_wavelet_haar_centered, 2);
         }
@@ -74,7 +80,7 @@ main (int argc, char **argv)
               test_2d (N, tda, gsl_wavelet_bspline, member[i], NS);
               test_2d (N, tda, gsl_wavelet_bspline_centered, member[i], NS);
             }
-          
+
           for (i = 4; i <= 20; i += 2)
             {
               test_2d (N, tda, gsl_wavelet_daubechies, i, S);
@@ -83,7 +89,16 @@ main (int argc, char **argv)
               test_2d (N, tda, gsl_wavelet_daubechies, i, NS);
               test_2d (N, tda, gsl_wavelet_daubechies_centered, i, NS);
             }
-          
+
+          for (i = 1; i <= 5; i ++)
+            {
+              test_2d (N, tda, gsl_wavelet_coiflet, i, S);
+              test_2d (N, tda, gsl_wavelet_coiflet_centered, i, S);
+
+              test_2d (N, tda, gsl_wavelet_coiflet, i, NS);
+              test_2d (N, tda, gsl_wavelet_coiflet_centered, i, NS);
+            }
+
           test_2d (N, tda, gsl_wavelet_haar, 2, S);
           test_2d (N, tda, gsl_wavelet_haar_centered, 2, S);
 
@@ -105,7 +120,7 @@ test_1d (size_t N, size_t stride, const gsl_wavelet_type * T, size_t member)
   gsl_wavelet *w;
 
   size_t i;
-  double *data = (double *)malloc (N * stride * sizeof (double));
+  double *data = malloc (N * stride * sizeof (double));
 
   for (i = 0; i < N * stride; i++)
     data[i] = 12345.0 + i;
@@ -184,11 +199,11 @@ test_2d (size_t N, size_t tda, const gsl_wavelet_type * T, size_t member, int ty
   size_t i;
   size_t j;
 
-  double *data = (double *)malloc (N * tda * sizeof (double));
+  double *data = malloc (N * tda * sizeof (double));
 
-  const char * name;
+  const char * typename;
 
-  name = (type == 1) ? "standard" : "nonstd" ;
+  typename = (type == 1) ? "standard" : "nonstd" ;
 
   for (i = 0; i < N * tda; i++)
     data[i] = 12345.0 + i;
@@ -206,14 +221,14 @@ test_2d (size_t N, size_t tda, const gsl_wavelet_type * T, size_t member, int ty
 
   m2 = gsl_matrix_alloc (N, N);
   gsl_matrix_memcpy (m2, m1);
-  
+
   mdelta = gsl_matrix_alloc (N, N);
 
   work = gsl_wavelet_workspace_alloc (N);
 
   w = gsl_wavelet_alloc (T, member);
 
-  switch (type) 
+  switch (type)
     {
     case 1:
       gsl_wavelet2d_transform_matrix_forward (w, m2, work);
@@ -243,7 +258,7 @@ test_2d (size_t N, size_t tda, const gsl_wavelet_type * T, size_t member, int ty
 
     gsl_test (fabs (x2 - x1) > N * 1e-15,
               "%s(%d)-2d %s, n = %d, tda = %d, maxerr = %g",
-              gsl_wavelet_name (w), member, name, N, tda, fabs (x2 - x1));
+              gsl_wavelet_name (w), member, typename, N, tda, fabs (x2 - x1));
   }
 
   if (tda > N)
@@ -259,9 +274,9 @@ test_2d (size_t N, size_t tda, const gsl_wavelet_type * T, size_t member, int ty
         }
 
       gsl_test (status, "%s(%d)-2d %s other data untouched, n = %d, tda = %d",
-                gsl_wavelet_name (w), member, name, N, tda);
+                gsl_wavelet_name (w), member, typename, N, tda);
     }
-  
+
   free (data);
   gsl_wavelet_workspace_free (work);
   gsl_wavelet_free (w);
