@@ -1,6 +1,6 @@
-/* linalg/qr_tr.c
+/* linalg/qr_ur.c
  * 
- * Copyright (C) 2019 Patrick Alken
+ * Copyright (C) 2019, 2020 Patrick Alken
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@
 static double qrtr_householder_transform (double *v0, gsl_vector * v);
 
 /*
-gsl_linalg_QR_TR_decomp()
+gsl_linalg_QR_UR_decomp()
   Compute the QR decomposition of the "triangle on top of rectangle" matrix
 
   [ S ] = Q [ R ]
@@ -67,7 +67,7 @@ Q = I - V T V^T
 */
 
 int
-gsl_linalg_QR_TR_decomp (gsl_matrix * S, gsl_matrix * A, gsl_matrix * T)
+gsl_linalg_QR_UR_decomp (gsl_matrix * S, gsl_matrix * A, gsl_matrix * T)
 {
   const size_t M = A->size1;
   const size_t N = S->size1;
@@ -126,7 +126,7 @@ gsl_linalg_QR_TR_decomp (gsl_matrix * S, gsl_matrix * A, gsl_matrix * T)
        * N2 [  0  ]      [  0  ] N2
        * M  [  A1 ]      [  0  ] M
        */
-      status = gsl_linalg_QR_TR_decomp(&S11.matrix, &A1.matrix, &T11.matrix);
+      status = gsl_linalg_QR_UR_decomp(&S11.matrix, &A1.matrix, &T11.matrix);
       if (status)
         return status;
 
@@ -157,7 +157,7 @@ gsl_linalg_QR_TR_decomp (gsl_matrix * S, gsl_matrix * A, gsl_matrix * T)
        * [ S22~ ] = Q2~ [ R22 ]
        * [  A2~ ]       [  0  ]
        */
-      status = gsl_linalg_QR_TR_decomp(&S22.matrix, &A2.matrix, &T22.matrix);
+      status = gsl_linalg_QR_UR_decomp(&S22.matrix, &A2.matrix, &T22.matrix);
       if (status)
         return status;
 

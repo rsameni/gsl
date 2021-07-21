@@ -2001,9 +2001,6 @@
     <ClCompile Include="..\..\linalg\trimult_complex.c">
       <Filter>linalg</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\linalg\qr_tr.c">
-      <Filter>linalg</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\combination\inline.c">
       <Filter>combination</Filter>
     </ClCompile>
@@ -2030,6 +2027,33 @@
     </ClCompile>
     <ClCompile Include="..\..\specfunc\inline.c">
       <Filter>specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\linalg\ql.c">
+      <Filter>linalg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\linalg\qrc.c">
+      <Filter>linalg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\linalg\rqrc.c">
+      <Filter>linalg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\linalg\lu_band.c">
+      <Filter>linalg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\linalg\qr_band.c">
+      <Filter>linalg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\linalg\qr_ud.c">
+      <Filter>linalg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\linalg\qr_ur.c">
+      <Filter>linalg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\linalg\qr_uu.c">
+      <Filter>linalg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\linalg\qr_uz.c">
+      <Filter>linalg</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
