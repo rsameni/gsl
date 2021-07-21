@@ -2031,9 +2031,6 @@
     <ClCompile Include="..\..\specfunc\inline.c">
       <Filter>specfunc</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\wavelet\coiflet.c">
-      <Filter>wavelet</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\integration\qng.h">
